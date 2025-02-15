@@ -1,9 +1,7 @@
-package com.suvash.betterclasses.model;
+package com.suvash.betterclasses.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
 
@@ -24,11 +22,6 @@ public class User {
     private String password;
     @Column(nullable = false)
     private String uuid;
-
-    @Column(nullable = true)
-    private String passwordRecoveryToken;
-    @Column(nullable = true)
-    private Date tokenExpiryTime;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",

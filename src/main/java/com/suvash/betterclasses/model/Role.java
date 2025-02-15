@@ -1,12 +1,10 @@
-package com.suvash.betterclasses.model;
+package com.suvash.betterclasses.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@NoArgsConstructor
 @Table(name = "roles")
 public class Role {
 
@@ -14,9 +12,4 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
-    public Role(String name) {
-        this.name = name;
-    }
-
 }

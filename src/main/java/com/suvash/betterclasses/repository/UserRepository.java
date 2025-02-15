@@ -1,6 +1,6 @@
-package com.suvash.betterclasses.repository;
+package com.suvash.betterclasses.Repository;
 
-import com.suvash.betterclasses.model.User;
+import com.suvash.betterclasses.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
