@@ -1,6 +1,8 @@
 package com.suvash.betterclasses.service.Impl;
 
+import com.suvash.betterclasses.common.CommonSuccessResponse;
 import com.suvash.betterclasses.config.JwtTokenProvider;
+import com.suvash.betterclasses.dto.AuthResponseDto;
 import com.suvash.betterclasses.dto.LoginDto;
 import com.suvash.betterclasses.dto.RegisterDto;
 import com.suvash.betterclasses.model.Role;
@@ -9,6 +11,9 @@ import com.suvash.betterclasses.repository.RoleRepository;
 import com.suvash.betterclasses.repository.UserRepository;
 import com.suvash.betterclasses.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -34,7 +39,7 @@ public class AuthServiceImpl implements AuthService {
     private RoleRepository roleRepository;
 
     @Override
-    public String login(LoginDto loginDto) {
+    public ResponseEntity<?> login(LoginDto loginDto) {
 
         // 01 - AuthenticationManager is used to authenticate the user
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -49,8 +54,14 @@ public class AuthServiceImpl implements AuthService {
         // 03 - Generate the token based on username and secret key
         String token = jwtTokenProvider.generateToken(authentication);
 
+        AuthResponseDto authResponseDto = new AuthResponseDto();
+        authResponseDto.setAccessToken(token);
+
         // 04 - Return the token to controller
-        return token;
+        return new ResponseEntity<>(
+                new CommonSuccessResponse<AuthResponseDto>(200, authResponseDto),
+                HttpStatus.OK
+        );
     }
 
     @Override

@@ -2,8 +2,9 @@ package com.suvash.betterclasses.service;
 
 import com.suvash.betterclasses.dto.LoginDto;
 import com.suvash.betterclasses.dto.RegisterDto;
+import org.springframework.http.ResponseEntity;
 
 public interface AuthService {
-    String login(LoginDto loginDto);
+    ResponseEntity<?> login(LoginDto loginDto);
     boolean register(RegisterDto registerDto);
 }

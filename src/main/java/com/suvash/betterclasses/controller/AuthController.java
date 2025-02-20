@@ -1,5 +1,6 @@
 package com.suvash.betterclasses.controller;
 
+
 import com.suvash.betterclasses.dto.AuthResponseDto;
 import com.suvash.betterclasses.dto.LoginDto;
 import com.suvash.betterclasses.dto.RegisterDto;
@@ -23,33 +24,20 @@ public class AuthController {
 
     // Build Login REST API
     @PostMapping("/login")
-    public ResponseEntity<AuthResponseDto> login(@RequestBody LoginDto loginDto){
-
-        //01 - Receive the token from AuthService
-        String token = authService.login(loginDto);
-
-        //02 - Set the token as a response using JwtAuthResponse Dto class
-        AuthResponseDto authResponseDto = new AuthResponseDto();
-        authResponseDto.setAccessToken(token);
-
-        //03 - Return the response to the user
-        return new ResponseEntity<>(authResponseDto, HttpStatus.OK);
+    public ResponseEntity<?> login(@RequestBody LoginDto loginDto){
+        return authService.login(loginDto);
     }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterDto registerDto)
     {
-        System.out.println(registerDto);
         boolean flag = authService.register(registerDto);
         if(flag)
         {
             LoginDto loginDto = new LoginDto();
             loginDto.setUsername(registerDto.getUsername());
             loginDto.setPassword(registerDto.getPassword());
-            String token = authService.login(loginDto);
-            AuthResponseDto authResponseDto = new AuthResponseDto();
-            authResponseDto.setAccessToken(token);
-            return new ResponseEntity<>(authResponseDto, HttpStatus.OK);
+            return authService.login(loginDto);
         }
         return new ResponseEntity<>("Invalid Information", HttpStatus.BAD_REQUEST);
     }
