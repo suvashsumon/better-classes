@@ -1,9 +1,9 @@
-package com.suvash.betterclasses.Controller;
+package com.suvash.betterclasses.controller;
 
-import com.suvash.betterclasses.Dto.AuthResponseDto;
-import com.suvash.betterclasses.Dto.LoginDto;
-import com.suvash.betterclasses.Dto.RegisterDto;
-import com.suvash.betterclasses.Service.AuthService;
+import com.suvash.betterclasses.dto.AuthResponseDto;
+import com.suvash.betterclasses.dto.LoginDto;
+import com.suvash.betterclasses.dto.RegisterDto;
+import com.suvash.betterclasses.service.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

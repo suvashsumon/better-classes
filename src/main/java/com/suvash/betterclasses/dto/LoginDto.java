@@ -1,4 +1,4 @@
-package com.suvash.betterclasses.Dto;
+package com.suvash.betterclasses.dto;
 
 import lombok.Data;
 

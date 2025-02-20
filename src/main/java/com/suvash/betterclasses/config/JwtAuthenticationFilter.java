@@ -1,4 +1,4 @@
-package com.suvash.betterclasses.Config;
+package com.suvash.betterclasses.config;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

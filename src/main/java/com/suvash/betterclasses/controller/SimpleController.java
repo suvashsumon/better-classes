@@ -1,4 +1,4 @@
-package com.suvash.betterclasses.Controller;
+package com.suvash.betterclasses.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

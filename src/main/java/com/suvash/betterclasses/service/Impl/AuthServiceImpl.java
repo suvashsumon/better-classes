@@ -1,13 +1,13 @@
-package com.suvash.betterclasses.Service.Impl;
+package com.suvash.betterclasses.service.Impl;
 
-import com.suvash.betterclasses.Config.JwtTokenProvider;
-import com.suvash.betterclasses.Dto.LoginDto;
-import com.suvash.betterclasses.Dto.RegisterDto;
-import com.suvash.betterclasses.Model.Role;
-import com.suvash.betterclasses.Model.User;
-import com.suvash.betterclasses.Repository.RoleRepository;
-import com.suvash.betterclasses.Repository.UserRepository;
-import com.suvash.betterclasses.Service.AuthService;
+import com.suvash.betterclasses.config.JwtTokenProvider;
+import com.suvash.betterclasses.dto.LoginDto;
+import com.suvash.betterclasses.dto.RegisterDto;
+import com.suvash.betterclasses.model.Role;
+import com.suvash.betterclasses.model.User;
+import com.suvash.betterclasses.repository.RoleRepository;
+import com.suvash.betterclasses.repository.UserRepository;
+import com.suvash.betterclasses.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

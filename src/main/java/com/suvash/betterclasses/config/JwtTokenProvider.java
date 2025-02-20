@@ -1,4 +1,4 @@
-package com.suvash.betterclasses.Config;
+package com.suvash.betterclasses.config;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

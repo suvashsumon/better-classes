@@ -1,4 +1,4 @@
-package com.suvash.betterclasses.Controller;
+package com.suvash.betterclasses.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

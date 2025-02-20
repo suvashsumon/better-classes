@@ -1,8 +1,8 @@
-package com.suvash.betterclasses.Config;
+package com.suvash.betterclasses.config;
 
 
-import com.suvash.betterclasses.Model.User;
-import com.suvash.betterclasses.Repository.UserRepository;
+import com.suvash.betterclasses.model.User;
+import com.suvash.betterclasses.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

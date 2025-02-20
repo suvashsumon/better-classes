@@ -1,4 +1,4 @@
-package com.suvash.betterclasses.Model;
+package com.suvash.betterclasses.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
