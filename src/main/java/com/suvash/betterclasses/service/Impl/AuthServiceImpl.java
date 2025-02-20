@@ -1,18 +1,20 @@
 package com.suvash.betterclasses.service.Impl;
 
+import com.suvash.betterclasses.common.CommonErrorResponse;
 import com.suvash.betterclasses.common.CommonSuccessResponse;
 import com.suvash.betterclasses.config.JwtTokenProvider;
 import com.suvash.betterclasses.dto.AuthResponseDto;
 import com.suvash.betterclasses.dto.LoginDto;
 import com.suvash.betterclasses.dto.RegisterDto;
+import com.suvash.betterclasses.dto.response.UserAlreadyExistResponseDto;
 import com.suvash.betterclasses.model.Role;
 import com.suvash.betterclasses.model.User;
 import com.suvash.betterclasses.repository.RoleRepository;
 import com.suvash.betterclasses.repository.UserRepository;
 import com.suvash.betterclasses.service.AuthService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -65,32 +67,38 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public boolean register(RegisterDto registerDto)
-    {
+    public ResponseEntity<?> register(RegisterDto registerDto) {
         if (userRepository.existsByUsername(registerDto.getUsername())) {
-            return false;
+            UserAlreadyExistResponseDto userAlreadyExistDto = new UserAlreadyExistResponseDto("Username already exist.");
+            return new ResponseEntity<>(
+                    new CommonErrorResponse<UserAlreadyExistResponseDto>(409, userAlreadyExistDto),
+                    HttpStatus.CONFLICT
+            );
         }
 
         if (userRepository.existsByEmail(registerDto.getEmail())) {
-//            throw new ResourceAlreadyExistsException("Email is already registered!");
-            return false;
+            UserAlreadyExistResponseDto userAlreadyExistDto = new UserAlreadyExistResponseDto("Email already exist.");
+            return new ResponseEntity<>(
+                    new CommonErrorResponse<UserAlreadyExistResponseDto>(409, userAlreadyExistDto),
+                    HttpStatus.CONFLICT
+            );
         }
 
-        // create role for user
         Role userRole = roleRepository.findByName("ROLE_USER");
         Set<Role> roles = new HashSet<>();
         roles.add(userRole);
 
-        // Create a new user object
         User user = new User();
         user.setUsername(registerDto.getUsername());
         user.setEmail(registerDto.getEmail());
         user.setName(registerDto.getName());
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
-        user.setRoles(roles);  // If roles need to be assigned
+        user.setRoles(roles);
 
-        // Save the user to the database
         userRepository.save(user);
-        return true;
+        LoginDto loginDto = new LoginDto();
+        loginDto.setUsername(registerDto.getUsername());
+        loginDto.setPassword(registerDto.getPassword());
+        return this.login(loginDto);
     }
 }

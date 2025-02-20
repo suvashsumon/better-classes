@@ -31,14 +31,6 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterDto registerDto)
     {
-        boolean flag = authService.register(registerDto);
-        if(flag)
-        {
-            LoginDto loginDto = new LoginDto();
-            loginDto.setUsername(registerDto.getUsername());
-            loginDto.setPassword(registerDto.getPassword());
-            return authService.login(loginDto);
-        }
-        return new ResponseEntity<>("Invalid Information", HttpStatus.BAD_REQUEST);
+        return authService.register(registerDto);
     }
 }

@@ -6,5 +6,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface AuthService {
     ResponseEntity<?> login(LoginDto loginDto);
-    boolean register(RegisterDto registerDto);
+    ResponseEntity<?> register(RegisterDto registerDto);
 }
