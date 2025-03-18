@@ -5,6 +5,7 @@ import com.suvash.betterclasses.dto.RegisterDto;
 import org.springframework.http.ResponseEntity;
 
 public interface AuthService {
-    ResponseEntity<?> login(LoginDto loginDto);
-    ResponseEntity<?> register(RegisterDto registerDto);
+  ResponseEntity<?> login(LoginDto loginDto);
+
+  ResponseEntity<?> register(RegisterDto registerDto);
 }

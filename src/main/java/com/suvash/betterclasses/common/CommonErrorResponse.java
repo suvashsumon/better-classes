@@ -6,13 +6,13 @@ import lombok.Setter;
 @Setter
 @Getter
 public class CommonErrorResponse<T> {
-    private int status;
-    private T error;
+  private int status;
+  private T error;
 
-    public CommonErrorResponse() {}
+  public CommonErrorResponse() {}
 
-    public CommonErrorResponse(int status, T error) {
-        this.status = status;
-        this.error = error;
-    }
+  public CommonErrorResponse(int status, T error) {
+    this.status = status;
+    this.error = error;
+  }
 }

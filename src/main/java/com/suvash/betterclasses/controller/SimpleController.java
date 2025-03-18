@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/")
 public class SimpleController {
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/admin")
-    public ResponseEntity<String> helloAdmin(){
-        return ResponseEntity.ok("Hello Admin");
-    }
+  @PreAuthorize("hasRole('ADMIN')")
+  @GetMapping("/admin")
+  public ResponseEntity<String> helloAdmin() {
+    return ResponseEntity.ok("Hello Admin");
+  }
 
-    @PreAuthorize("hasRole('USER')")
-    @GetMapping("/user")
-    public ResponseEntity<String> helloUser(){
-        return ResponseEntity.ok("Hello User");
-    }
+  @PreAuthorize("hasRole('USER')")
+  @GetMapping("/user")
+  public ResponseEntity<String> helloUser() {
+    return ResponseEntity.ok("Hello User");
+  }
 }

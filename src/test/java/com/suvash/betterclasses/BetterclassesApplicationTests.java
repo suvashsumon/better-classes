@@ -6,9 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class BetterclassesApplicationTests {
 
-	@Test
-	void contextLoads() {
-		return;
-	}
-
+  @Test
+  void contextLoads() {
+    return;
+  }
 }

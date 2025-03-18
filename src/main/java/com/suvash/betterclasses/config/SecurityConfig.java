@@ -20,40 +20,43 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class SecurityConfig {
 
-    private UserDetailsService userDetailsService;
+  private UserDetailsService userDetailsService;
 
-    private JwtAuthenticationEntryPoint authenticationEntryPoint;
+  private JwtAuthenticationEntryPoint authenticationEntryPoint;
 
-    private JwtAuthenticationFilter authenticationFilter;
+  private JwtAuthenticationFilter authenticationFilter;
 
-    @Bean
-    public static PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+  @Bean
+  public static PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-    @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+  @Bean
+  SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests((authorize) -> {
-                    authorize.requestMatchers("/api/auth/**").permitAll();
-                    authorize.requestMatchers("/health-check").permitAll();
-                    authorize.requestMatchers("/swagger-ui/**").permitAll();
-                    authorize.requestMatchers("/v3/api-docs/**").permitAll();
-                    authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
-                    authorize.anyRequest().authenticated();
-                }).httpBasic(Customizer.withDefaults());
+    http.csrf(csrf -> csrf.disable())
+        .authorizeHttpRequests(
+            (authorize) -> {
+              authorize.requestMatchers("/api/auth/**").permitAll();
+              authorize.requestMatchers("/health-check").permitAll();
+              authorize.requestMatchers("/swagger-ui/**").permitAll();
+              authorize.requestMatchers("/v3/api-docs/**").permitAll();
+              authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+              authorize.anyRequest().authenticated();
+            })
+        .httpBasic(Customizer.withDefaults());
 
-        http.exceptionHandling( exception -> exception
-                .authenticationEntryPoint(authenticationEntryPoint));
+    http.exceptionHandling(
+        exception -> exception.authenticationEntryPoint(authenticationEntryPoint));
 
-        http.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
+    http.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-        return http.build();
-    }
+    return http.build();
+  }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-        return configuration.getAuthenticationManager();
-    }
+  @Bean
+  public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
+      throws Exception {
+    return configuration.getAuthenticationManager();
+  }
 }

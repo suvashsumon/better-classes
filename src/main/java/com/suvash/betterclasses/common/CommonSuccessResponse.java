@@ -6,13 +6,13 @@ import lombok.Setter;
 @Setter
 @Getter
 public class CommonSuccessResponse<T> {
-    private int status;
-    private T data;
+  private int status;
+  private T data;
 
-    public CommonSuccessResponse() {}
+  public CommonSuccessResponse() {}
 
-    public CommonSuccessResponse(int status, T data) {
-        this.status = status;
-        this.data = data;
-    }
+  public CommonSuccessResponse(int status, T data) {
+    this.status = status;
+    this.data = data;
+  }
 }
