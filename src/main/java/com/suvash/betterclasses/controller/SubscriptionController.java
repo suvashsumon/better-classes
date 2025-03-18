@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/subscription")
 public class SubscriptionController {
-    @PostMapping("/getPaymentUrl")
-    public String getPaymentUrl() {
-        // Logic to generate payment URL goes here
-            return "https://example.com/payment/url";
-    }
+  @PostMapping("/getPaymentUrl")
+  public String getPaymentUrl() {
+    // Logic to generate payment URL goes here
+    return "https://example.com/payment/url";
+  }
 }
