@@ -1,17 +1,19 @@
 package com.suvash.betterclasses.common;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class CommonSuccessResponse<T> {
+@Builder
+public class CommonResponse<T> {
   private int status;
   private T data;
 
-  public CommonSuccessResponse() {}
+  public CommonResponse() {}
 
-  public CommonSuccessResponse(int status, T data) {
+  public CommonResponse(int status, T data) {
     this.status = status;
     this.data = data;
   }

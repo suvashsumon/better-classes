@@ -1,7 +1,7 @@
 package com.suvash.betterclasses.service.Impl;
 
 import com.suvash.betterclasses.common.CommonErrorResponse;
-import com.suvash.betterclasses.common.CommonSuccessResponse;
+import com.suvash.betterclasses.common.CommonResponse;
 import com.suvash.betterclasses.config.JwtTokenProvider;
 import com.suvash.betterclasses.dto.AuthResponseDto;
 import com.suvash.betterclasses.dto.LoginDto;
@@ -55,10 +55,10 @@ public class AuthServiceImpl implements AuthService {
       authResponseDto.setAccessToken(token);
 
       // 04 - Return the token to controller
-      return new ResponseEntity<>(new CommonSuccessResponse<>(200, authResponseDto), HttpStatus.OK);
+      return new ResponseEntity<>(new CommonResponse<>(200, authResponseDto), HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(
-          new CommonSuccessResponse<>(
+          new CommonResponse<>(
               401, new UnauthorizedResponseDto("Invalid username or password!")),
           HttpStatus.UNAUTHORIZED);
     }

@@ -4,11 +4,14 @@ import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
+import com.suvash.betterclasses.common.CommonErrorResponse;
+import com.suvash.betterclasses.common.CommonResponse;
 import com.suvash.betterclasses.constant.StripeConstants;
 import com.suvash.betterclasses.dto.request.CheckoutRequestDto;
 import com.suvash.betterclasses.dto.response.CheckoutResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -17,7 +20,7 @@ public class StripeService {
   @Value("${stripe.secret-key}")
   private String secretKey;
 
-  public CheckoutResponseDto getSessionUrl(CheckoutRequestDto checkoutRequestDto) {
+  public CommonResponse getSessionUrl(CheckoutRequestDto checkoutRequestDto) {
     Stripe.apiKey = secretKey;
 
     SessionCreateParams.LineItem.PriceData.ProductData productData =
@@ -53,19 +56,29 @@ public class StripeService {
     } catch (StripeException e) {
       e.printStackTrace();
       log.error(StripeConstants.SESSION_CREATION_ERROR);
-      return CheckoutResponseDto.builder()
+      CheckoutResponseDto checkoutResponseDto = CheckoutResponseDto.builder()
           .status(StripeConstants.ERROR)
           .message(StripeConstants.FAILURE_MESSAGE)
           .sessionUrl(null)
           .sessionId(null)
           .build();
+
+      return CommonResponse.builder()
+              .status(410)
+              .data(checkoutResponseDto)
+              .build();
     }
 
-    return CheckoutResponseDto.builder()
+    CheckoutResponseDto checkoutResponseDto = CheckoutResponseDto.builder()
         .status(StripeConstants.SUCCESS)
         .message(StripeConstants.SUCCESS_MESSAGE)
         .sessionUrl(session.getUrl())
         .sessionId(session.getId())
         .build();
+
+    return CommonResponse.builder()
+            .status(200)
+            .data(checkoutResponseDto)
+            .build();
   }
 }

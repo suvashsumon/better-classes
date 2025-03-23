@@ -1,5 +1,6 @@
 package com.suvash.betterclasses.controller;
 
+import com.suvash.betterclasses.common.CommonResponse;
 import com.suvash.betterclasses.dto.request.CheckoutRequestDto;
 import com.suvash.betterclasses.dto.response.CheckoutResponseDto;
 import com.suvash.betterclasses.service.StripeService;
@@ -20,9 +21,9 @@ public class SubscriptionController {
   }
 
   @PostMapping("/checkout")
-  public ResponseEntity<CheckoutResponseDto> getPaymentUrl(
+  public ResponseEntity<CommonResponse> getPaymentUrl(
       @RequestBody CheckoutRequestDto checkoutRequestDto) {
-    CheckoutResponseDto checkoutResponseDto = stripeService.getSessionUrl(checkoutRequestDto);
-    return ResponseEntity.status(HttpStatus.OK).body(checkoutResponseDto);
+    CommonResponse response = stripeService.getSessionUrl(checkoutRequestDto);
+    return ResponseEntity.status(HttpStatus.OK).body(response);
   }
 }
