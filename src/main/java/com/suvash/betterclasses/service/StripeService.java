@@ -23,7 +23,7 @@ public class StripeService {
 
 		SessionCreateParams.LineItem.PriceData.ProductData productData =
 				SessionCreateParams.LineItem.PriceData.ProductData.builder()
-						.setName(checkoutRequestDto.getName())
+						.setName(checkoutRequestDto.getPlan())
 						.build();
 
 		SessionCreateParams.LineItem.PriceData priceData = SessionCreateParams.LineItem.PriceData.builder()

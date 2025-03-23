@@ -10,7 +10,7 @@ public class CheckoutRequestDto {
 	private Long amount;
 	private String currency;
 	private Long quantity;
-	private String name;
+	private String plan;
 	private String successUrl;
 	private String cancelUrl;
 }
