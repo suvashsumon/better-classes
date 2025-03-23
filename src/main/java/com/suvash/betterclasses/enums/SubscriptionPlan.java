@@ -1,6 +1,6 @@
 package com.suvash.betterclasses.enums;
 
-public enum SubscriptionType {
+public enum SubscriptionPlan {
 	TRIAL,
 	BASIC,
 	PREMIUM;
