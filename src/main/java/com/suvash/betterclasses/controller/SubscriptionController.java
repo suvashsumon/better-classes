@@ -19,8 +19,8 @@ public class SubscriptionController {
 
 	public SubscriptionController(StripeService stripeService, CheckoutService checkoutService) {
 		this.stripeService = stripeService;
-        this.checkoutService = checkoutService;
-    }
+		this.checkoutService = checkoutService;
+	}
 
 	@PostMapping("/checkout")
 	public ResponseEntity<CommonResponse> getPaymentUrl(@RequestBody CheckoutRequestDto checkoutRequestDto) {

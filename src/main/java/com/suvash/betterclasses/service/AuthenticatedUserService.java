@@ -8,19 +8,21 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticatedUserService {
-    private final UserRepository userRepository;
-    public AuthenticatedUserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-    public User getAuthenticatedUser() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	private final UserRepository userRepository;
 
-        if (principal instanceof UserDetails) {
-            String username = ((UserDetails) principal).getUsername();
-            return userRepository.findByUsername(username)
-                    .orElseThrow(() -> new RuntimeException("User not found"));
-        } else {
-            throw new RuntimeException("User is not authenticated");
-        }
-    }
+	public AuthenticatedUserService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	public User getAuthenticatedUser() {
+		Object principal =
+				SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (principal instanceof UserDetails) {
+			String username = ((UserDetails) principal).getUsername();
+			return userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+		} else {
+			throw new RuntimeException("User is not authenticated");
+		}
+	}
 }

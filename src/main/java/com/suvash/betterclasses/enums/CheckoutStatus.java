@@ -1,8 +1,8 @@
 package com.suvash.betterclasses.enums;
 
 public enum CheckoutStatus {
-    SUCCESS,
-    CANCELLED,
-    FAILED,
-    UNPAID
+	SUCCESS,
+	CANCELLED,
+	FAILED,
+	UNPAID
 }

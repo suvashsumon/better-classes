@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class StripeResponse<T1, T2, T3>{
-    private T1 first;
-    private T2 second;
-    private T3 third;
+public class StripeResponse<T1, T2, T3> {
+	private T1 first;
+	private T2 second;
+	private T3 third;
 }

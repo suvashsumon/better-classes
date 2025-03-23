@@ -14,31 +14,31 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Checkout {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private SubscriptionPlan subscriptionPlan;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private SubscriptionPlan subscriptionPlan;
 
-    @Column(nullable = false)
-    private Long month;
+	@Column(nullable = false)
+	private Long month;
 
-    @Column(nullable = false)
-    private double amount;
+	@Column(nullable = false)
+	private double amount;
 
-    @Column(nullable = false)
-    private String currency;
+	@Column(nullable = false)
+	private String currency;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private CheckoutStatus status;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private CheckoutStatus status;
 
-    @Column(nullable = false)
-    private String stripeSession;
+	@Column(nullable = false)
+	private String stripeSession;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+	@OneToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
 }
