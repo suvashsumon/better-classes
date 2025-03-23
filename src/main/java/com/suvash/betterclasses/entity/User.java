@@ -1,6 +1,6 @@
 package com.suvash.betterclasses.entity;
 
-import com.suvash.betterclasses.enums.SubscriptionType;
+import com.suvash.betterclasses.enums.SubscriptionPlan;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -31,7 +31,7 @@ public class User {
 	private String uuid;
 
 	@Column(nullable = false)
-	private SubscriptionType subscriptionType;
+	private SubscriptionPlan subscriptionType;
 
 	@Column(nullable = false)
 	private LocalDateTime expirationDate;
@@ -46,11 +46,14 @@ public class User {
 			inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	private Set<Role> roles;
 
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	private Checkout checkout;
+
 	@PrePersist
 	public void prePersist() {
 		this.uuid = UUID.randomUUID().toString();
 		this.isActive = true;
 		this.expirationDate = LocalDateTime.now().plusDays(30);
-		this.subscriptionType = SubscriptionType.TRIAL;
+		this.subscriptionType = SubscriptionPlan.TRIAL;
 	}
 }
