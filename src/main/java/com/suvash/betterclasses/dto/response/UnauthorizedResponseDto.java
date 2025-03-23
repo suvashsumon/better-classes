@@ -6,9 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UnauthorizedResponseDto {
-  private String message;
+	private String message;
 
-  public UnauthorizedResponseDto(String message) {
-    this.message = message;
-  }
+	public UnauthorizedResponseDto(String message) {
+		this.message = message;
+	}
 }

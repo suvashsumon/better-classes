@@ -11,26 +11,25 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/subscription")
 public class SubscriptionController {
-  private StripeService stripeService;
+	private StripeService stripeService;
 
-  public SubscriptionController(StripeService stripeService) {
-    this.stripeService = stripeService;
-  }
+	public SubscriptionController(StripeService stripeService) {
+		this.stripeService = stripeService;
+	}
 
-  @PostMapping("/checkout")
-  public ResponseEntity<CommonResponse> getPaymentUrl(
-      @RequestBody CheckoutRequestDto checkoutRequestDto) {
-    CommonResponse response = stripeService.getSessionUrl(checkoutRequestDto);
-    return ResponseEntity.status(HttpStatus.OK).body(response);
-  }
+	@PostMapping("/checkout")
+	public ResponseEntity<CommonResponse> getPaymentUrl(@RequestBody CheckoutRequestDto checkoutRequestDto) {
+		CommonResponse response = stripeService.getSessionUrl(checkoutRequestDto);
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
 
-  @PostMapping("/checkout/success")
-  public String checkoutSuccess(@RequestBody CheckoutUpdateRequestDto checkoutUpdateRequestDto){
-    return checkoutUpdateRequestDto.getSessionId();
-  }
+	@PostMapping("/checkout/success")
+	public String checkoutSuccess(@RequestBody CheckoutUpdateRequestDto checkoutUpdateRequestDto) {
+		return checkoutUpdateRequestDto.getSessionId();
+	}
 
-  @PostMapping("/checkout/cancel")
-  public String checkoutCancel(@RequestBody CheckoutUpdateRequestDto checkoutUpdateRequestDto){
-    return checkoutUpdateRequestDto.getSessionId();
-  }
+	@PostMapping("/checkout/cancel")
+	public String checkoutCancel(@RequestBody CheckoutUpdateRequestDto checkoutUpdateRequestDto) {
+		return checkoutUpdateRequestDto.getSessionId();
+	}
 }

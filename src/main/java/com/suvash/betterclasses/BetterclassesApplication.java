@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BetterclassesApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(BetterclassesApplication.class, args);
-  }
+	public static void main(String[] args) {
+		SpringApplication.run(BetterclassesApplication.class, args);
+	}
 }

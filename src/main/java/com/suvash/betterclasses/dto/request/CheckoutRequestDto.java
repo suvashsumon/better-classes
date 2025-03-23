@@ -7,10 +7,10 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CheckoutRequestDto {
-  private Long amount;
-  private String currency;
-  private Long quantity;
-  private String name;
-  private String successUrl;
-  private String cancelUrl;
+	private Long amount;
+	private String currency;
+	private Long quantity;
+	private String name;
+	private String successUrl;
+	private String cancelUrl;
 }

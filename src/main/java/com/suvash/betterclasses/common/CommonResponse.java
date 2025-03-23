@@ -8,13 +8,13 @@ import lombok.Setter;
 @Getter
 @Builder
 public class CommonResponse<T> {
-  private int status;
-  private T data;
+	private int status;
+	private T data;
 
-  public CommonResponse() {}
+	public CommonResponse() {}
 
-  public CommonResponse(int status, T data) {
-    this.status = status;
-    this.data = data;
-  }
+	public CommonResponse(int status, T data) {
+		this.status = status;
+		this.data = data;
+	}
 }

@@ -16,16 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-  @Autowired private AuthService authService;
+	@Autowired
+	private AuthService authService;
 
-  // Build Login REST API
-  @PostMapping("/login")
-  public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
-    return authService.login(loginDto);
-  }
+	// Build Login REST API
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
+		return authService.login(loginDto);
+	}
 
-  @PostMapping("/register")
-  public ResponseEntity<?> register(@RequestBody RegisterDto registerDto) {
-    return authService.register(registerDto);
-  }
+	@PostMapping("/register")
+	public ResponseEntity<?> register(@RequestBody RegisterDto registerDto) {
+		return authService.register(registerDto);
+	}
 }
