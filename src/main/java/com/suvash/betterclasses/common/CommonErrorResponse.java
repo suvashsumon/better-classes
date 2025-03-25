@@ -9,12 +9,12 @@ import lombok.Setter;
 @Builder
 public class CommonErrorResponse<T> {
 	private int status;
-	private T data;
+	private T error;
 
 	public CommonErrorResponse() {}
 
-	public CommonErrorResponse(int status, T data) {
+	public CommonErrorResponse(int status, T error) {
 		this.status = status;
-		this.data = data;
+		this.error = error;
 	}
 }

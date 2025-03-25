@@ -6,6 +6,7 @@ import com.suvash.betterclasses.entity.Checkout;
 import com.suvash.betterclasses.entity.User;
 import com.suvash.betterclasses.enums.CheckoutStatus;
 import com.suvash.betterclasses.enums.SubscriptionPlan;
+import com.suvash.betterclasses.exception.NoSuchCheckoutFoundException;
 import com.suvash.betterclasses.repository.CheckoutRepository;
 import com.suvash.betterclasses.repository.UserRepository;
 import com.suvash.betterclasses.service.AuthenticatedUserService;
@@ -53,7 +54,7 @@ public class CheckoutService implements ICheckoutService {
 	public boolean postHandleSuccessFullCheckout(CheckoutUpdateRequestDto checkoutUpdateRequestDto)
 	{
 		Checkout checkout = checkoutRepository.findByStripeSession(checkoutUpdateRequestDto.getSessionId());
-		if(checkout == null) return false;
+		if(checkout==null) throw new NoSuchCheckoutFoundException("No checkout found by this session id.");
 
 		// update checkout status
         checkout.setStatus(CheckoutStatus.SUCCESS);
