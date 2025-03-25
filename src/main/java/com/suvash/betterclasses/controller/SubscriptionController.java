@@ -39,8 +39,18 @@ public class SubscriptionController {
 	}
 
 	@PostMapping("/checkout/success")
-	public String checkoutSuccess(@RequestBody CheckoutUpdateRequestDto checkoutUpdateRequestDto) {
-		return checkoutUpdateRequestDto.getSessionId();
+	public ResponseEntity<CommonResponse> checkoutSuccess(@RequestBody CheckoutUpdateRequestDto checkoutUpdateRequestDto) {
+		// extract the session id
+		String sessionId = checkoutUpdateRequestDto.getSessionId();
+
+		// call postHandleSuccessFullCheckout method
+		checkoutService.postHandleSuccessFullCheckout(checkoutUpdateRequestDto);
+        CommonResponse<Object> response = CommonResponse.builder()
+				.status(HttpStatus.OK.value())
+				.data("Checkout Successfully Updated")
+				.build();
+
+		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 
 	@PostMapping("/checkout/cancel")

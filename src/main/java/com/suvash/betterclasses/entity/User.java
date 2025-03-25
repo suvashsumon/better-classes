@@ -3,6 +3,7 @@ package com.suvash.betterclasses.entity;
 import com.suvash.betterclasses.enums.SubscriptionPlan;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import lombok.Data;
@@ -46,8 +47,8 @@ public class User {
 			inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	private Set<Role> roles;
 
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-	private Checkout checkout;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Checkout> checkout;
 
 	@PrePersist
 	public void prePersist() {
