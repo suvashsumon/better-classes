@@ -7,14 +7,14 @@ import lombok.Setter;
 @Setter
 @Getter
 @Builder
-public class CommonErrorResponse<T> {
+public class CommonResponse<T> {
 	private int status;
-	private T error;
+	private T data;
 
-	public CommonErrorResponse() {}
+	public CommonResponse() {}
 
-	public CommonErrorResponse(int status, T error) {
+	public CommonResponse(int status, T data) {
 		this.status = status;
-		this.error = error;
+		this.data = data;
 	}
 }
