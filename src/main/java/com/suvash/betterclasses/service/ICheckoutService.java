@@ -5,5 +5,6 @@ import com.suvash.betterclasses.dto.request.CheckoutUpdateRequestDto;
 
 public interface ICheckoutService {
 	void storeCheckoutData(CheckoutRequestDto checkoutRequestDto, String stripeSession);
+
 	boolean postHandleSuccessFullCheckout(CheckoutUpdateRequestDto checkoutUpdateRequestDto);
 }

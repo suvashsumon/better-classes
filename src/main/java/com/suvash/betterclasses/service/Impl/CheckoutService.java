@@ -11,9 +11,8 @@ import com.suvash.betterclasses.repository.CheckoutRepository;
 import com.suvash.betterclasses.repository.UserRepository;
 import com.suvash.betterclasses.service.AuthenticatedUserService;
 import com.suvash.betterclasses.service.ICheckoutService;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
+import org.springframework.stereotype.Service;
 
 @Service
 public class CheckoutService implements ICheckoutService {
@@ -51,13 +50,12 @@ public class CheckoutService implements ICheckoutService {
 	}
 
 	@Override
-	public boolean postHandleSuccessFullCheckout(CheckoutUpdateRequestDto checkoutUpdateRequestDto)
-	{
+	public boolean postHandleSuccessFullCheckout(CheckoutUpdateRequestDto checkoutUpdateRequestDto) {
 		Checkout checkout = checkoutRepository.findByStripeSession(checkoutUpdateRequestDto.getSessionId());
-		if(checkout==null) throw new NoSuchCheckoutFoundException("No checkout found by this session id.");
+		if (checkout == null) throw new NoSuchCheckoutFoundException("No checkout found by this session id.");
 
 		// update checkout status
-        checkout.setStatus(CheckoutStatus.SUCCESS);
+		checkout.setStatus(CheckoutStatus.SUCCESS);
 		checkoutRepository.save(checkout);
 
 		// update users account validity

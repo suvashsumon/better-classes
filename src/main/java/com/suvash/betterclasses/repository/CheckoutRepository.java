@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CheckoutRepository extends JpaRepository<Checkout, Long> {
-    @Query("SELECT c FROM Checkout c WHERE c.stripeSession = :stripeSession")
-    Checkout findByStripeSession(@Param("stripeSession") String stripeSession);
+	@Query("SELECT c FROM Checkout c WHERE c.stripeSession = :stripeSession")
+	Checkout findByStripeSession(@Param("stripeSession") String stripeSession);
 }
