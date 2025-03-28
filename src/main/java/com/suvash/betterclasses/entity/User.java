@@ -31,6 +31,12 @@ public class User {
 	@Column(nullable = false)
 	private String uuid;
 
+	@Column
+	private String institution;
+
+	@Column
+	private String about;
+
 	@Column(nullable = false)
 	private SubscriptionPlan subscriptionType;
 
